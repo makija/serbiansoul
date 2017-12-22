@@ -1,0 +1,70 @@
+@media only screen and (max-width: 500px) {
+
+    #wrapper{
+      width: 500px;
+      height: 100%;
+    }
+
+
+  }
+
+    body{
+      background-image: url("../img/poster.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+
+
+    }
+
+    p{
+       font-size: 2em;
+       color: #FBF4F4;
+       font-weight: 600;
+       font-family: 'Courgette', cursive;
+       width: 100%;
+
+    }
+    span{
+      display: inline-block;
+      padding: 3px;
+    }
+
+a:link,
+a:visited {
+  text-decoration:none;
+  color:#F9F5F5;
+}
+
+a:hover {
+  text-decoration:none;
+  color:#f4428c;
+
+
+}
+a:active {
+  color:#f4428c;
+}
+
+
+
+    #wrapper{
+
+
+      margin:0 auto;
+      position: relative;
+      width: 1020px;
+      height: 800px;
+
+    }
+
+    #text{
+      position: absolute;
+      top: 40%;
+      left: 20%;
+    }
+
+    .social{
+      text-align: center;
+      font-size: 2.5em;
+
+    }

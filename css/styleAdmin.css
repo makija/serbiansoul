@@ -1,0 +1,37 @@
+#cena .row {
+  margin: 0;
+}
+
+.cenaPlus {
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+
+
+.boxes {
+  margin: 20px;
+  padding: 20px;
+}
+
+.descTour {
+  margin: 20px 0;
+}
+
+.descTour p {
+  margin-bottom: 0.5rem;
+}
+
+.service {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+
+.spec{
+  margin-top: 10px;
+}
+
+#allTours a{
+  color:#343a40;
+  width: 100% !important;
+}
