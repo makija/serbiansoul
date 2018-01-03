@@ -1,6 +1,8 @@
 
 <?php
 $tour= $this->tour;
+$prices= $this->prices;
+$i=0;
 
 ?>
 <form action="" method="post">
@@ -89,18 +91,31 @@ $tour= $this->tour;
 
 
     <div class="row boxes border border-secondary rounded " id="cena">
-      <div class="row divCena">
+
+      <div class="col-md-2 cenaPlus">
+          <button type="button" class="btn btn-secondary btnPlus"> <i class="icon-plus"></i> </button>
+        </div>
+
+     <?php foreach($prices as $price){ $i++; ?>
+
+    
+      
+      <div class="row divCena" >
         <div class="col-md-10">
           <p class="h6">Cena 1
           </p>
         </div>
+
         <div class="col-md-2 cenaPlus">
-          <button type="button" class="btn btn-secondary btnPlus"> <i class="icon-plus"></i> </button>
+          <button type="button" class="btn btn-secondary btnMinus"> <i class="icon-minus"></i> </button>
         </div>
+        
 
         <div class="col-md-3">
           <p>Grupa</p>
           <select name="min[]" class="custom-select minimum" >
+            <option selected><?= $price['min_people']?></option>
+            <option disabled>Min ljudi</option>
 
           </select>
 
@@ -109,7 +124,8 @@ $tour= $this->tour;
         <div class="col-md-3">
           <p>Grupa</p>
           <select name=max[] class="custom-select maximum"  >
-            <option selected disabled>Max ljudi</option>
+            <option selected><?= $price['max_people']?></option>
+            <option disabled>Max ljudi</option>
 
           </select>
 
@@ -117,37 +133,30 @@ $tour= $this->tour;
 
         <div class=" col-md-2 price">
           <p>Cena</p>
-          <input name="price[]" type="text" class="form-control" value='0'>
+          <input name="price[]" type="text" class="form-control" value='<?= $price['price']?>'>
         </div>
 
         <div class=" col-md-2 price">
           <p>Cena %</p>
-          <input name = "disPrice[]" type="text" class="form-control" value='0' >
+          <input name = "disPrice[]" type="text" class="form-control" value='<?= $price['dis_price']?>' >
         </div>
 
       </div>
 
+<?php } ?>
 
 
 
     </div>
     <!-- row ends -->
 
-    <div class="row boxes border border-secondary rounded" id="services">
+    <div class="row boxes border border-secondary rounded" id="servicesEdit">
 
       <div class="col-md-12">
         <p class="h6 service">Services</p>
-
       </div>
 
-      <div class="col-md-4">
-      </div>
-
-      <div class="col-md-4">
-      </div>
-
-      <div class="col-md-4">
-      </div>
+    
 
 
 

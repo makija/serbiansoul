@@ -259,7 +259,45 @@ public function editTour(){
 }
 }
 
+public function renderServices($id){
+  $i=0;
+
+  $html = ' <div class="col-md-4">';
+
+  $selectedServices=Tour::getTourServices($id);
+  
+  $servicesAll = self::getServices();
+  $checked=[];
+
+  foreach ($selectedServices as $srv) {
+   $checked[]= $srv['srv_id'];
+  }
 
 
+  foreach($servicesAll as $service){
+    ++$i;
+    
+
+    
+
+    (in_array($service['srv_id'],$checked)) ? $isChecked='checked': $isChecked='';
+
+    $html.= "<div class='form-check'><label class='form-check-label'><input ".$isChecked." name ='serviceChecked[]' class='form-check-input' type='checkbox' value=".$service['srv_id']."><i class=" .$service['srv_icon']. "></i>" .$service['srv_name']. "</label></div>";
+
+    
+     if(($i%5)==0) {$html.='</div><div class="col-md-4">';}
+
+
+  }
+
+$html.='</div>';
+
+
+return $html;
+  
+
+
+
+}
 }
  ?>

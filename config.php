@@ -1,9 +1,9 @@
 <?php
 define ("DB","serbian_soul");
 define ("HOST","localhost");
-define ("USER","root");
-define ("PASS","");
-define ("PATH", dirname(__DIR__)."\belgradetours");
+define ("USER","marija");
+define ("PASS","123");
+define ("PATH", dirname(__DIR__).'/serbiansoul');
 
 function __autoload ($class) {
 

@@ -3,9 +3,11 @@
 require_once "../config.php";
 
 $id=$_POST['id'];
-$p= Tour::price($id);
+$a = new Admin;
+$data = $a->renderPrices($id);
 
-echo json_encode($p);
+
+echo $data;
 
 
 

@@ -152,3 +152,11 @@ $('#tourName').keyup(function() {
   $('#tourCover').val(value + '.jpg');
   $('#tourGallery').val(value);
 })
+
+
+$('.btnMinus').click(function(){
+
+        var btn = $(this).parent();
+
+        $(btn).parent().remove(); 
+    })

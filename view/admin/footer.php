@@ -10,6 +10,7 @@
 <script type="text/javascript">
 
 
+
 function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
@@ -31,47 +32,26 @@ $(document).ready(function(){
   console.log(idURL);
 
   $.ajax({
-    url:'api/ajaxEditPrices.php',
+    url:'api/ajaxEditServices.php',
     method:'post',
     data:{id:idURL},
-    dataType:'json',
+    dataType:'html',
     success:function(result){
 
-  for(var i =0;i<result.length;i++){
+        console.log(result);
 
-    priceDiv++
-    selectGroupValue++
-
-    var idi = 'group' + priceDiv;
-    var minSel = 'min' + selectGroupValue;
-    var maxSel = 'max' + selectGroupValue
-
-    var divCena = $('.divCena').html();
-
-    var d = document.createElement('div');
-    var p = d.className = 'row divCena ' + idi;
-
-
-    $('#cena').append(d);
-
-    $('.' + idi).append(divCena);
-    $('.' + idi + ' .h6').text('Cena' + priceDiv);
-
-    // $('.' + idi + ' select')[0].setAttribute("name", minSel);
-    // $('.' + idi + ' select')[1].setAttribute("name", maxSel);
-
-    $('.' + idi +' i')[0].setAttribute("class","icon-minus");
-    $('.' + idi +' .btn').click(function(){
-      $('.' + idi).remove();
-  });  //function ends
-
-}//for ends
+  $('#servicesEdit').append(result);
 
 }//suc ends
 
 });
 
 })
+
+
+
+
+
 
 
 </script>
