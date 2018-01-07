@@ -11,6 +11,9 @@
 
 
 
+
+
+
 function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
@@ -26,27 +29,54 @@ function getUrlParameter(sParam) {
 }
 
 
-$(document).ready(function(){
+// $(document).ready(function(){
 
-  var idURL = getUrlParameter('id');
-  console.log(idURL);
+//   var idURL = getUrlParameter('id');
+//   console.log(idURL);
 
-  $.ajax({
-    url:'api/ajaxEditServices.php',
-    method:'post',
-    data:{id:idURL},
-    dataType:'html',
-    success:function(result){
+//   $.ajax({
+//     url:'api/ajaxEditServices.php',
+//     method:'post',
+//     data:{id:idURL},
+//     dataType:'html',
+//     success:function(result){
 
-        console.log(result);
+       
 
-  $('#servicesEdit').append(result);
+//   $('#servicesEdit').append(result);
 
-}//suc ends
+// }//suc ends
 
-});
+// });
+
+// })
+
+
+
+var services = $(".check");
+
+console.log(services);
+
+services.each(function(index){
+
+$(this).change(function(){
+
+if($( this ).prop( "checked" )){
+
+$(this).attr("checked",true);
+
+}
+
+else {
+$(this).attr("checked",false);
+}
+})
+
 
 })
+
+
+
 
 
 

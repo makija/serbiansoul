@@ -4,6 +4,7 @@ define ("HOST","localhost");
 define ("USER","marija");
 define ("PASS","123");
 define ("PATH", dirname(__DIR__).'/serbiansoul');
+define ("PATHA", dirname(__DIR__).'/serbiansoul/?ctrl=admin');
 
 function __autoload ($class) {
 

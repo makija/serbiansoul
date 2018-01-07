@@ -118,6 +118,33 @@ class Admin {
 
   }
 
+  public function deleteService($tourId,$srvId){
+
+     $db=Database::connection();
+     $q= $db->prepare('DELETE from tour_service where tour_id = :tourID and srv_id = :srvID');
+     $q->bindParam(":tourID", $tourId, PDO::PARAM_INT);
+     $q->bindParam(":srvID", $srvId, PDO::PARAM_INT);
+
+     
+      $q->execute();
+
+   
+
+
+
+  }
+
+
+  // public function editServices($tourId, $srvId){
+
+  //   $db=Database::connection();
+  //   $q= $db->prepare('UPDATE tour_service SET ')
+
+
+
+
+  // }
+
   public function saveTour($tourId, $cat,$name,$shortDesc,$desc,$program,$cover,$gallery,$spec=0,$prior=1,$long='',$lat=''){
     $db=Database::connection();
     $q= $db->prepare('UPDATE `tours` SET
@@ -218,7 +245,7 @@ class Admin {
   }
 }
 
-public function editTour(){
+public function editTour($id){
   if (isset ($_POST['editTour'])){
 
     isset ($_POST['longitude']) ? $long= $_POST['longitude'] : $long='';
@@ -238,26 +265,56 @@ public function editTour(){
      $this->updatePrice($p['priceId'][$i], $_GET['id'], $p['min'][$i], $p['max'][$i], $p['price'][$i] , $p['disPrice'][$i]);
   }
 
-  //
-  // foreach( $_POST['serviceChecked'] as $serv){
-  //   $this->insertService($tourId,$serv);
-  // }
-  //
+
+
+
+  $services = Tour::getTourServices($id);
+  $ch = [];
+
+  // print_r($services);
+
+  // print_r($_POST['serviceChecked']);
+
+  foreach($services as $srv ){
+  
+  if(!in_array($srv['srv_id'],$_POST['serviceChecked'])){
+  $this->deleteService($id,$srv['srv_id']);  
+ }
+
+ $ch[] = $srv['srv_id'];
+
+}
+
+print_r($ch);
+
+  foreach( $_POST['serviceChecked'] as $serv){
+
+    gettype($serv);
+
+    if(in_array($serv, $ch)) continue;
+
+    $this->insertService($id,$serv);
+  }
+  
+  
   // $k= ['srvDescId','srvDesc'];
   // $v= [$_POST['srvDescId'],$_POST['srvDesc']];
-  //
+  
   // $srv= array_combine($k,$v);
-  //
+  
   // print_r($srv);
-  //
+  
   // for($i=0;$i<sizeof($_POST['srvDescId']);$i++){
-  //
+  
   //   $this->insertServDesc($tourId, $srv['srvDescId'][$i], $srv['srvDesc'][$i]);
   // }
 
 
+   }
+
+   header("location:".PATHA);
 }
-}
+
 
 public function renderServices($id){
   $i=0;
@@ -272,17 +329,17 @@ public function renderServices($id){
   foreach ($selectedServices as $srv) {
    $checked[]= $srv['srv_id'];
   }
-
+  
 
   foreach($servicesAll as $service){
+
     ++$i;
-    
 
-    
+  (in_array($service['srv_id'],$checked)) ? $isChecked= "checked ='checked' " : $isChecked='';
 
-    (in_array($service['srv_id'],$checked)) ? $isChecked='checked': $isChecked='';
+  
 
-    $html.= "<div class='form-check'><label class='form-check-label'><input ".$isChecked." name ='serviceChecked[]' class='form-check-input' type='checkbox' value=".$service['srv_id']."><i class=" .$service['srv_icon']. "></i>" .$service['srv_name']. "</label></div>";
+    $html.= "<div class='form-check'><label class='form-check-label'><input ".$isChecked." name ='serviceChecked[]' class='form-check-input check' type='checkbox' value=".$service['srv_id']."><i class=" .$service['srv_icon']. "></i>" .$service['srv_name']. "</label></div>";
 
     
      if(($i%5)==0) {$html.='</div><div class="col-md-4">';}
@@ -291,6 +348,8 @@ public function renderServices($id){
   }
 
 $html.='</div>';
+
+  // $data = ['srvAll'=>$servicesAll, 'checkedSrv'=>$checked];
 
 
 return $html;

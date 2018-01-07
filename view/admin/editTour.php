@@ -157,6 +157,11 @@ $i=0;
       </div>
 
     
+    <?php
+
+    echo $this->services;
+
+    ?>
 
 
 

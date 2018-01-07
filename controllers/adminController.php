@@ -33,7 +33,8 @@ class adminController extends baseController {
     $this->services = Tour::getTourServices($id);
 
     $admin = new Admin;
-    $admin->editTour();
+    $this->services = $admin->renderServices($id);
+    $admin->editTour($id);
 
     $this->getAdmin('editTour');
 
